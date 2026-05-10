@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('test@example.com')
-  const [password, setPassword] = useState('Test123!')
+  const [password, setPassword] = useState('12345')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -84,7 +84,7 @@ export default function LoginPage() {
         <p className="text-center text-sm text-gray-600 mt-4">
           Credenciales de prueba:<br />
           Email: test@example.com<br />
-          Contraseña: Test123!
+          Contraseña: 12345
         </p>
       </div>
     </div>
