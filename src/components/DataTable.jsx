@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { ChevronDown, Search } from 'lucide-react'
 
 const CATEGORIES = [
-  { value: 'contaminacion', label: 'Contaminación', color: 'red' },
-  { value: 'erosion', label: 'Erosión', color: 'yellow' },
-  { value: 'agua', label: 'Agua', color: 'blue' },
-  { value: 'vegetacion', label: 'Vegetación', color: 'green' },
+  { value: 'contaminacion', label: 'Contaminación', color: 'red', emoji: '☠️' },
+  { value: 'erosion', label: 'Erosión', color: 'yellow', emoji: '🏜️' },
+  { value: 'agua', label: 'Agua', color: 'blue', emoji: '💧' },
+  { value: 'vegetacion', label: 'Vegetación', color: 'green', emoji: '🌿' },
+  { value: 'fauna', label: 'Fauna', color: 'purple', emoji: '🦅' },
 ]
 
 export default function DataTable({ registros, loading, onFilter }) {
@@ -31,10 +32,14 @@ export default function DataTable({ registros, loading, onFilter }) {
       green: 'bg-green-100 text-green-800',
       yellow: 'bg-yellow-100 text-yellow-800',
       blue: 'bg-blue-100 text-blue-800',
-      orange: 'bg-orange-100 text-orange-800',
-      gray: 'bg-gray-100 text-gray-800',
+      purple: 'bg-purple-100 text-purple-800',
     }
     return colorMap[cat?.color] || 'bg-gray-100 text-gray-800'
+  }
+
+  const getCategoryEmoji = (tipo) => {
+    const cat = getCategoryInfo(tipo)
+    return cat?.emoji || '❓'
   }
 
   const filteredRegistros = registros.filter((reg) => {
@@ -124,9 +129,12 @@ export default function DataTable({ registros, loading, onFilter }) {
                 {filteredRegistros.map((reg) => (
                   <tr key={reg.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(reg.observacion)}`}>
-                        {getCategoryInfo(reg.observacion)?.label}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">{getCategoryEmoji(reg.categoria)}</span>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(reg.categoria)}`}>
+                          {getCategoryInfo(reg.categoria)?.label}
+                        </span>
+                      </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
                       <p className="line-clamp-2">{reg.observacion}</p>

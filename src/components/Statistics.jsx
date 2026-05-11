@@ -17,6 +17,7 @@ const COLORS = {
   erosion: '#eab308',
   agua: '#3b82f6',
   vegetacion: '#22c55e',
+  fauna: '#a855f7',
 }
 
 const categoryLabelMap = {
@@ -24,6 +25,7 @@ const categoryLabelMap = {
   erosion: 'Erosión',
   agua: 'Agua',
   vegetacion: 'Vegetación',
+  fauna: 'Fauna',
 }
 
 export default function Statistics({ registros, loading }) {

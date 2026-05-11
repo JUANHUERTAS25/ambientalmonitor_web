@@ -6,6 +6,7 @@ const categoryLabelMap = {
   erosion: 'Erosión',
   agua: 'Agua',
   vegetacion: 'Vegetación',
+  fauna: 'Fauna',
 }
 
 export const exportToCSV = (registros, fileName = 'registros.csv') => {

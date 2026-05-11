@@ -21,6 +21,7 @@ const categoryColorMap = {
   erosion: 'bg-yellow-500',
   agua: 'bg-blue-500',
   vegetacion: 'bg-green-500',
+  fauna: 'bg-purple-500',
 }
 
 const categoryLabelMap = {
@@ -28,6 +29,7 @@ const categoryLabelMap = {
   erosion: 'Erosión',
   agua: 'Agua',
   vegetacion: 'Vegetación',
+  fauna: 'Fauna',
 }
 
 // Create proper Leaflet icons
@@ -38,8 +40,7 @@ const createCustomIcon = (color) => {
     green: '#22c55e',
     yellow: '#eab308',
     blue: '#3b82f6',
-    orange: '#f97316',
-    gray: '#6b7280',
+    purple: '#a855f7',
   }
   
   return L.icon({
