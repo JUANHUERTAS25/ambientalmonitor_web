@@ -14,7 +14,7 @@ export const useRegistros = () => {
         .from('registro_santurban')
         .select(`
           id,
-          usuario_id,
+          user_id,
           tipo_observacion,
           descripcion,
           latitud,
@@ -38,7 +38,7 @@ export const useRegistros = () => {
       }
 
       if (filters.usuarioId) {
-        query = query.eq('usuario_id', filters.usuarioId)
+        query = query.eq('user_id', filters.usuarioId)
       }
 
       // Order by creation date descending

@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       if (session?.user) {
-        fetchProfile(session.user.id)
+        fetchProfile(session.user.id, session.user.email)
       } else {
         setLoading(false)
       }
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       (event, session) => {
         setUser(session?.user ?? null)
         if (session?.user) {
-          fetchProfile(session.user.id)
+          fetchProfile(session.user.id, session.user.email)
         } else {
           setProfile(null)
           setIsAdmin(false)
@@ -39,17 +39,22 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const fetchProfile = async (userId) => {
+  const fetchProfile = async (userId, userEmail) => {
     try {
-      const { data, error } = await supabase
+      const { data, error: fetchError } = await supabase
         .from('perfiles')
         .select('*')
         .eq('id', userId)
         .single()
 
-      if (error) {
-        console.error('Error fetching profile:', error)
-        setProfile(null)
+      if (fetchError) {
+        console.error('Error fetching profile:', fetchError)
+        // Create a default profile with email from auth
+        setProfile({
+          id: userId,
+          email: userEmail,
+          rol: 'usuario'
+        })
         setIsAdmin(false)
       } else {
         setProfile(data)
@@ -57,7 +62,11 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('Unexpected error:', error)
-      setProfile(null)
+      setProfile({
+        id: userId,
+        email: userEmail,
+        rol: 'usuario'
+      })
       setIsAdmin(false)
     } finally {
       setLoading(false)
