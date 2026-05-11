@@ -26,7 +26,7 @@ export const useRegistros = () => {
 
       // Apply filters
       if (filters.tipo_observacion) {
-        query = query.eq('tipo_observacion', filters.tipo_observacion)
+        query = query.eq('observacion', filters.tipo_observacion)
       }
 
       if (filters.startDate) {
