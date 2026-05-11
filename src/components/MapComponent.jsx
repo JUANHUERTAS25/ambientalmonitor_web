@@ -17,21 +17,17 @@ const createIcon = (color) => {
 
 // Color mapping for categories
 const categoryColorMap = {
-  degradacion: 'bg-red-500',
-  flora: 'bg-green-500',
-  fauna: 'bg-yellow-500',
-  recurso_hidrico: 'bg-blue-500',
-  incendio: 'bg-orange-500',
-  otro: 'bg-gray-500',
+  contaminacion: 'bg-red-500',
+  erosion: 'bg-yellow-500',
+  agua: 'bg-blue-500',
+  vegetacion: 'bg-green-500',
 }
 
 const categoryLabelMap = {
-  degradacion: 'Degradación',
-  flora: 'Flora',
-  fauna: 'Fauna',
-  recurso_hidrico: 'Recurso Hídrico',
-  incendio: 'Incendio',
-  otro: 'Otro',
+  contaminacion: 'Contaminación',
+  erosion: 'Erosión',
+  agua: 'Agua',
+  vegetacion: 'Vegetación',
 }
 
 // Create proper Leaflet icons

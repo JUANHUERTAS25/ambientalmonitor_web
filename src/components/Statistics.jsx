@@ -13,21 +13,17 @@ import {
 } from 'recharts'
 
 const COLORS = {
-  degradacion: '#ef4444',
-  flora: '#22c55e',
-  fauna: '#eab308',
-  recurso_hidrico: '#3b82f6',
-  incendio: '#f97316',
-  otro: '#6b7280',
+  contaminacion: '#ef4444',
+  erosion: '#eab308',
+  agua: '#3b82f6',
+  vegetacion: '#22c55e',
 }
 
 const categoryLabelMap = {
-  degradacion: 'Degradación',
-  flora: 'Flora',
-  fauna: 'Fauna',
-  recurso_hidrico: 'Recurso Hídrico',
-  incendio: 'Incendio',
-  otro: 'Otro',
+  contaminacion: 'Contaminación',
+  erosion: 'Erosión',
+  agua: 'Agua',
+  vegetacion: 'Vegetación',
 }
 
 export default function Statistics({ registros, loading }) {

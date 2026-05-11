@@ -2,12 +2,10 @@ import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 
 const categoryLabelMap = {
-  degradacion: 'Degradación',
-  flora: 'Flora',
-  fauna: 'Fauna',
-  recurso_hidrico: 'Recurso Hídrico',
-  incendio: 'Incendio',
-  otro: 'Otro',
+  contaminacion: 'Contaminación',
+  erosion: 'Erosión',
+  agua: 'Agua',
+  vegetacion: 'Vegetación',
 }
 
 export const exportToCSV = (registros, fileName = 'registros.csv') => {

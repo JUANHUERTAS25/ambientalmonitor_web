@@ -2,12 +2,10 @@ import { useState } from 'react'
 import { ChevronDown, Search } from 'lucide-react'
 
 const CATEGORIES = [
-  { value: 'degradacion', label: 'Degradación', color: 'red' },
-  { value: 'flora', label: 'Flora', color: 'green' },
-  { value: 'fauna', label: 'Fauna', color: 'yellow' },
-  { value: 'recurso_hidrico', label: 'Recurso Hídrico', color: 'blue' },
-  { value: 'incendio', label: 'Incendio', color: 'orange' },
-  { value: 'otro', label: 'Otro', color: 'gray' },
+  { value: 'contaminacion', label: 'Contaminación', color: 'red' },
+  { value: 'erosion', label: 'Erosión', color: 'yellow' },
+  { value: 'agua', label: 'Agua', color: 'blue' },
+  { value: 'vegetacion', label: 'Vegetación', color: 'green' },
 ]
 
 export default function DataTable({ registros, loading, onFilter }) {
