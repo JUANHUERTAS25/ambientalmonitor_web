@@ -13,15 +13,15 @@ const categoryLabelMap = {
 export const exportToCSV = (registros, fileName = 'registros.csv') => {
   const headers = ['ID', 'Tipo', 'Descripción', 'Latitud', 'Longitud', 'Fecha', 'Estado']
   
-  const rows = registros.map((reg) => [
-    reg.id,
-    categoryLabelMap[reg.tipo_observacion],
-    reg.descripcion,
-    reg.latitud.toFixed(4),
-    reg.longitud.toFixed(4),
-    new Date(reg.created_at).toLocaleDateString('es-ES'),
-    reg.sincronizado ? 'Sincronizado' : 'Pendiente',
-  ])
+   const rows = registros.map((reg) => [
+     reg.id,
+     categoryLabelMap[reg.observacion],
+     reg.descripcion,
+     reg.latitud.toFixed(4),
+     reg.longitud.toFixed(4),
+     new Date(reg.created_at).toLocaleDateString('es-ES'),
+     reg.sincronizado ? 'Sincronizado' : 'Pendiente',
+   ])
 
   const csvContent = [
     headers.join(','),
@@ -67,14 +67,14 @@ export const exportToPDF = (registros, fileName = 'registros.pdf') => {
   doc.text(`Pendientes: ${registros.filter((r) => !r.sincronizado).length}`, 14, 49)
 
   // Add table
-  const tableData = registros.map((reg) => [
-    categoryLabelMap[reg.tipo_observacion],
-    reg.descripcion.substring(0, 30) + (reg.descripcion.length > 30 ? '...' : ''),
-    reg.latitud.toFixed(4),
-    reg.longitud.toFixed(4),
-    new Date(reg.created_at).toLocaleDateString('es-ES'),
-    reg.sincronizado ? 'Sincronizado' : 'Pendiente',
-  ])
+   const tableData = registros.map((reg) => [
+     categoryLabelMap[reg.observacion],
+     reg.descripcion.substring(0, 30) + (reg.descripcion.length > 30 ? '...' : ''),
+     reg.latitud.toFixed(4),
+     reg.longitud.toFixed(4),
+     new Date(reg.created_at).toLocaleDateString('es-ES'),
+     reg.sincronizado ? 'Sincronizado' : 'Pendiente',
+   ])
 
   autoTable(doc, {
     head: [['Tipo', 'Descripción', 'Lat', 'Lng', 'Fecha', 'Estado']],

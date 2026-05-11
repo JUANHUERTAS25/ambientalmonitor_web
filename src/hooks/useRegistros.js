@@ -15,7 +15,7 @@ export const useRegistros = () => {
         .select(`
           id,
           user_id,
-          tipo_observacion,
+          observacion,
           descripcion,
           latitud,
           longitud,
@@ -25,8 +25,8 @@ export const useRegistros = () => {
         `)
 
       // Apply filters
-      if (filters.tipo_observacion) {
-        query = query.eq('observacion', filters.tipo_observacion)
+      if (filters.categoria) {
+        query = query.eq('observacion', filters.categoria)
       }
 
       if (filters.startDate) {

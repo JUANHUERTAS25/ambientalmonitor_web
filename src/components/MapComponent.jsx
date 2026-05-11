@@ -88,21 +88,21 @@ export default function MapComponent({ registros, loading }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {registros.map((registro) => (
-          <Marker
-            key={registro.id}
-            position={[registro.latitud, registro.longitud]}
-            icon={createCustomIcon(
-              categoryColorMap[registro.tipo_observacion]?.replace('bg-', '').replace('-500', '')
-            )}
-          >
-            <Popup>
-              <div className="w-64 space-y-2">
-                <div>
-                  <h3 className="font-semibold text-gray-900">
-                    {categoryLabelMap[registro.tipo_observacion]}
-                  </h3>
-                </div>
+         {registros.map((registro) => (
+           <Marker
+             key={registro.id}
+             position={[registro.latitud, registro.longitud]}
+             icon={createCustomIcon(
+               categoryColorMap[registro.observacion]?.replace('bg-', '').replace('-500', '')
+             )}
+           >
+             <Popup>
+               <div className="w-64 space-y-2">
+                 <div>
+                   <h3 className="font-semibold text-gray-900">
+                     {categoryLabelMap[registro.observacion]}
+                   </h3>
+                 </div>
                 <p className="text-sm text-gray-700">{registro.descripcion}</p>
                 <div className="text-xs text-gray-600 space-y-1">
                   <p><strong>Coordenadas:</strong> {registro.latitud.toFixed(4)}, {registro.longitud.toFixed(4)}</p>

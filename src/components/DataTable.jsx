@@ -40,14 +40,14 @@ export default function DataTable({ registros, loading, onFilter }) {
   }
 
   const filteredRegistros = registros.filter((reg) => {
-    if (filters.categoria && reg.tipo_observacion !== filters.categoria) {
+    if (filters.categoria && reg.observacion !== filters.categoria) {
       return false
     }
     if (filters.busqueda) {
       const search = filters.busqueda.toLowerCase()
       return (
         reg.descripcion.toLowerCase().includes(search) ||
-        reg.tipo_observacion.toLowerCase().includes(search)
+        reg.observacion.toLowerCase().includes(search)
       )
     }
     return true
@@ -126,8 +126,8 @@ export default function DataTable({ registros, loading, onFilter }) {
                 {filteredRegistros.map((reg) => (
                   <tr key={reg.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(reg.tipo_observacion)}`}>
-                        {getCategoryInfo(reg.tipo_observacion)?.label}
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getCategoryColor(reg.observacion)}`}>
+                        {getCategoryInfo(reg.observacion)?.label}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">

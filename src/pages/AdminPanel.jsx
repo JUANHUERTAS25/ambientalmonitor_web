@@ -36,7 +36,7 @@ export default function AdminPanel() {
   const totalRegistros = registros.length
   const pendingRegistros = registros.filter((r) => !r.sincronizado).length
   const categoryCounts = registros.reduce((acc, reg) => {
-    acc[reg.tipo_observacion] = (acc[reg.tipo_observacion] || 0) + 1
+    acc[reg.observacion] = (acc[reg.observacion] || 0) + 1
     return acc
   }, {})
 
@@ -121,7 +121,7 @@ export default function AdminPanel() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {users.map((user) => {
-                    const userRegistros = registros.filter((r) => r.usuario_id === user.id)
+                    const userRegistros = registros.filter((r) => r.user_id === user.id)
                     return (
                       <tr key={user.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 text-sm text-gray-900">{user.email}</td>
