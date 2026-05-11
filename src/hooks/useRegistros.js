@@ -11,7 +11,7 @@ export const useRegistros = () => {
     setError(null)
     try {
       let query = supabase
-        .from('registros')
+        .from('registro_santurban')
         .select(`
           id,
           usuario_id,

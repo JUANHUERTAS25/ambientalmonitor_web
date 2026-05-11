@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable'
 
 const categoryLabelMap = {
   degradacion: 'Degradación',
@@ -76,7 +76,7 @@ export const exportToPDF = (registros, fileName = 'registros.pdf') => {
     reg.sincronizado ? 'Sincronizado' : 'Pendiente',
   ])
 
-  doc.autoTable({
+  autoTable(doc, {
     head: [['Tipo', 'Descripción', 'Lat', 'Lng', 'Fecha', 'Estado']],
     body: tableData,
     startY: 60,
