@@ -5,6 +5,7 @@ import DashboardPage from './pages/DashboardPage'
 import AdminPanel from './pages/AdminPanel'
 import ProtectedRoute from './components/ProtectedRoute'
 
+// Force redeploy with correct Supabase anon key
 function App() {
   const { user, loading } = useAuth()
 
