@@ -2,19 +2,42 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useUsers } from '../hooks/useUsers'
 import { useRegistros } from '../hooks/useRegistros'
-import { LogOut, Shield } from 'lucide-react'
+import { LogOut, Shield, ArrowLeft } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { supabase } from '../config/supabase'
 
 export default function AdminPanel() {
   const { profile, logout, isAdmin } = useAuth()
   const { users, loading: usersLoading, updateUserRole } = useUsers()
   const { registros } = useRegistros()
   const navigate = useNavigate()
+  const [adminCount, setAdminCount] = useState(0)
 
   // Redirect if not admin
   if (!isAdmin) {
     navigate('/dashboard')
     return null
   }
+
+  // Fetch admin count
+  useEffect(() => {
+    const fetchAdminCount = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('perfiles')
+          .select('*', { count: 'exact', head: true })
+          .eq('rol', 'admin')
+        
+        if (!error) {
+          setAdminCount(data?.length || 0)
+        }
+      } catch (err) {
+        console.error('Error fetching admin count:', err)
+      }
+    }
+    
+    fetchAdminCount()
+  }, [])
 
   const handleLogout = async () => {
     const { error } = await logout()
@@ -54,13 +77,22 @@ export default function AdminPanel() {
               <p className="text-purple-100">Gestión de aplicación</p>
             </div>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-          >
-            <LogOut size={20} />
-            Cerrar Sesión
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <ArrowLeft size={20} />
+              Volver al Dashboard
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <LogOut size={20} />
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
       </header>
 
@@ -83,12 +115,12 @@ export default function AdminPanel() {
              <p className="text-4xl font-bold text-yellow-600 mt-2">0</p>
            </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 text-sm font-medium">Administradores</p>
-            <p className="text-4xl font-bold text-purple-600 mt-2">
-              {users.filter((u) => u.rol === 'admin').length}
-            </p>
-          </div>
+           <div className="bg-white rounded-lg shadow p-6">
+             <p className="text-gray-600 text-sm font-medium">Administradores</p>
+             <p className="text-4xl font-bold text-purple-600 mt-2">
+               {adminCount}
+             </p>
+           </div>
         </div>
 
         {/* Users Management */}
