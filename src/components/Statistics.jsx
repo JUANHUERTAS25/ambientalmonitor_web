@@ -65,11 +65,10 @@ export default function Statistics({ registros, loading }) {
     return acc
   }, [])
 
-  // Prepare data for sync status
-  const syncData = [
-    { name: 'Sincronizado', value: registros.filter((r) => r.sincronizado).length },
-    { name: 'Pendiente', value: registros.filter((r) => !r.sincronizado).length },
-  ]
+   // Prepare data for sync status
+   const syncData = [
+     { name: 'Registros', value: registros.length },
+   ]
 
   return (
     <div className="space-y-6">
@@ -125,32 +124,32 @@ export default function Statistics({ registros, loading }) {
         )}
       </div>
 
-      {/* Sync Status */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Estado de Sincronización</h3>
-        {syncData[0].value > 0 || syncData[1].value > 0 ? (
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={syncData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, value }) => `${name}: ${value}`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                <Cell fill="#22c55e" />
-                <Cell fill="#eab308" />
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        ) : (
-          <p className="text-gray-600">No hay datos disponibles</p>
-        )}
-      </div>
+       {/* Sync Status */}
+       <div className="bg-white rounded-lg shadow p-6">
+         <h3 className="text-lg font-semibold mb-4">Total de Registros</h3>
+         {registros.length > 0 ? (
+           <div className="space-y-4">
+             <div>
+               <div className="flex justify-between mb-1">
+                 <span className="text-sm text-gray-700">Total</span>
+                 <span className="text-sm font-semibold text-gray-900">
+                   {registros.length}
+                 </span>
+               </div>
+               <div className="w-full bg-gray-200 rounded-full h-2">
+                 <div
+                   className="bg-blue-600 h-2 rounded-full"
+                   style={{
+                     width: '100%',
+                   }}
+                 ></div>
+               </div>
+             </div>
+           </div>
+         ) : (
+           <p className="text-gray-600">No hay datos disponibles</p>
+         )}
+       </div>
     </div>
   )
 }

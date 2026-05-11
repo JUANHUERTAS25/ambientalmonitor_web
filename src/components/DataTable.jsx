@@ -40,14 +40,14 @@ export default function DataTable({ registros, loading, onFilter }) {
   }
 
   const filteredRegistros = registros.filter((reg) => {
-    if (filters.categoria && reg.observacion !== filters.categoria) {
+    if (filters.categoria && reg.categoria !== filters.categoria) {
       return false
     }
     if (filters.busqueda) {
       const search = filters.busqueda.toLowerCase()
       return (
-        reg.descripcion.toLowerCase().includes(search) ||
-        reg.observacion.toLowerCase().includes(search)
+        reg.observacion.toLowerCase().includes(search) ||
+        reg.categoria.toLowerCase().includes(search)
       )
     }
     return true
@@ -131,7 +131,7 @@ export default function DataTable({ registros, loading, onFilter }) {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
-                      <p className="line-clamp-2">{reg.descripcion}</p>
+                      <p className="line-clamp-2">{reg.observacion}</p>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600">
                       <p>{reg.latitud.toFixed(4)}</p>
@@ -141,8 +141,8 @@ export default function DataTable({ registros, loading, onFilter }) {
                       {new Date(reg.created_at).toLocaleDateString('es-ES')}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${reg.sincronizado ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                        {reg.sincronizado ? 'Sincronizado' : 'Pendiente'}
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800`}>
+                        Sincronizado
                       </span>
                     </td>
                   </tr>

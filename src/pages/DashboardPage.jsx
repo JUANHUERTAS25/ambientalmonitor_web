@@ -29,8 +29,8 @@ export default function DashboardPage() {
 
   // Calculate statistics
   const totalRegistros = registros.length
-  const sincronizados = registros.filter((r) => r.sincronizado).length
-  const pendientes = registros.filter((r) => !r.sincronizado).length
+  const sincronizados = registros.length // Todos están sincronizados
+  const pendientes = 0 // No hay campo sincronizado en la tabla actual
 
   return (
     <div className="min-h-screen bg-gray-50">

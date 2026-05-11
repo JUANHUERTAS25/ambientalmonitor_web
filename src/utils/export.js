@@ -15,12 +15,12 @@ export const exportToCSV = (registros, fileName = 'registros.csv') => {
   
    const rows = registros.map((reg) => [
      reg.id,
-     categoryLabelMap[reg.observacion],
-     reg.descripcion,
+     categoryLabelMap[reg.observacion] || reg.observacion,
+     reg.observacion,
      reg.latitud.toFixed(4),
      reg.longitud.toFixed(4),
      new Date(reg.created_at).toLocaleDateString('es-ES'),
-     reg.sincronizado ? 'Sincronizado' : 'Pendiente',
+     'Sincronizado',
    ])
 
   const csvContent = [
@@ -60,20 +60,19 @@ export const exportToPDF = (registros, fileName = 'registros.pdf') => {
   doc.setFontSize(10)
   doc.text(`Generado: ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}`, 14, 25)
   
-  // Add statistics
-  doc.setFontSize(11)
-  doc.text(`Total de Registros: ${registros.length}`, 14, 35)
-  doc.text(`Sincronizados: ${registros.filter((r) => r.sincronizado).length}`, 14, 42)
-  doc.text(`Pendientes: ${registros.filter((r) => !r.sincronizado).length}`, 14, 49)
+   // Add statistics
+   doc.setFontSize(11)
+   doc.text(`Total de Registros: ${registros.length}`, 14, 35)
+   doc.text(`Estado: Sincronizados`, 14, 42)
 
   // Add table
    const tableData = registros.map((reg) => [
-     categoryLabelMap[reg.observacion],
-     reg.descripcion.substring(0, 30) + (reg.descripcion.length > 30 ? '...' : ''),
+     categoryLabelMap[reg.observacion] || reg.observacion,
+     reg.observacion.substring(0, 30) + (reg.observacion.length > 30 ? '...' : ''),
      reg.latitud.toFixed(4),
      reg.longitud.toFixed(4),
      new Date(reg.created_at).toLocaleDateString('es-ES'),
-     reg.sincronizado ? 'Sincronizado' : 'Pendiente',
+     'Sincronizado',
    ])
 
   autoTable(doc, {

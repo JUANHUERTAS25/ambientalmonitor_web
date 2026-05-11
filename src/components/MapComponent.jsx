@@ -103,15 +103,15 @@ export default function MapComponent({ registros, loading }) {
                      {categoryLabelMap[registro.observacion]}
                    </h3>
                  </div>
-                <p className="text-sm text-gray-700">{registro.descripcion}</p>
+                <p className="text-sm text-gray-700">{registro.observacion}</p>
                 <div className="text-xs text-gray-600 space-y-1">
                   <p><strong>Coordenadas:</strong> {registro.latitud.toFixed(4)}, {registro.longitud.toFixed(4)}</p>
                   <p><strong>Fecha:</strong> {new Date(registro.created_at).toLocaleDateString('es-ES')}</p>
-                  <p><strong>Estado:</strong> {registro.sincronizado ? 'Sincronizado' : 'Pendiente'}</p>
+                  <p><strong>Estado:</strong> Sincronizado</p>
                 </div>
-                {registro.imagen_url && (
+                {registro.image_url && (
                   <img
-                    src={registro.imagen_url}
+                    src={registro.image_url}
                     alt="Observación"
                     className="w-full h-48 object-cover rounded mt-2"
                   />

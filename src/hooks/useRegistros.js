@@ -14,19 +14,19 @@ export const useRegistros = () => {
         .from('registro_santurban')
         .select(`
           id,
-          user_id,
-          observacion,
-          descripcion,
+          created_at,
           latitud,
           longitud,
-          imagen_url,
-          created_at,
-          sincronizado
+          altitud,
+          image_url,
+          observacion,
+          categoria,
+          user_id
         `)
 
       // Apply filters
       if (filters.categoria) {
-        query = query.eq('observacion', filters.categoria)
+        query = query.eq('categoria', filters.categoria)
       }
 
       if (filters.startDate) {

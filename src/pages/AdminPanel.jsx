@@ -34,9 +34,9 @@ export default function AdminPanel() {
 
   // Calculate statistics
   const totalRegistros = registros.length
-  const pendingRegistros = registros.filter((r) => !r.sincronizado).length
+  const pendingRegistros = 0 // No hay campo sincronizado en la tabla actual
   const categoryCounts = registros.reduce((acc, reg) => {
-    acc[reg.observacion] = (acc[reg.observacion] || 0) + 1
+    acc[reg.categoria] = (acc[reg.categoria] || 0) + 1
     return acc
   }, {})
 
@@ -78,10 +78,10 @@ export default function AdminPanel() {
             <p className="text-4xl font-bold text-green-600 mt-2">{totalRegistros}</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 text-sm font-medium">Registros Pendientes</p>
-            <p className="text-4xl font-bold text-yellow-600 mt-2">{pendingRegistros}</p>
-          </div>
+           <div className="bg-white rounded-lg shadow p-6">
+             <p className="text-gray-600 text-sm font-medium">Registros Pendientes</p>
+             <p className="text-4xl font-bold text-yellow-600 mt-2">0</p>
+           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
             <p className="text-gray-600 text-sm font-medium">Administradores</p>
@@ -184,44 +184,44 @@ export default function AdminPanel() {
             )}
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold mb-4">Estado de Sincronización</h3>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm text-gray-700">Sincronizados</span>
-                  <span className="text-sm font-semibold text-gray-900">
-                    {registros.filter((r) => r.sincronizado).length}
-                  </span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-green-600 h-2 rounded-full"
-                    style={{
-                      width: `${totalRegistros > 0 ? (registros.filter((r) => r.sincronizado).length / totalRegistros) * 100 : 0}%`,
-                    }}
-                  ></div>
-                </div>
-              </div>
+           <div className="bg-white rounded-lg shadow p-6">
+             <h3 className="text-lg font-semibold mb-4">Estado de Sincronización</h3>
+             <div className="space-y-4">
+               <div>
+                 <div className="flex justify-between mb-1">
+                   <span className="text-sm text-gray-700">Sincronizados</span>
+                   <span className="text-sm font-semibold text-gray-900">
+                     {totalRegistros}
+                   </span>
+                 </div>
+                 <div className="w-full bg-gray-200 rounded-full h-2">
+                   <div
+                     className="bg-green-600 h-2 rounded-full"
+                     style={{
+                       width: '100%',
+                     }}
+                   ></div>
+                 </div>
+               </div>
 
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm text-gray-700">Pendientes</span>
-                  <span className="text-sm font-semibold text-gray-900">
-                    {pendingRegistros}
-                  </span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-yellow-600 h-2 rounded-full"
-                    style={{
-                      width: `${totalRegistros > 0 ? (pendingRegistros / totalRegistros) * 100 : 0}%`,
-                    }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
+               <div>
+                 <div className="flex justify-between mb-1">
+                   <span className="text-sm text-gray-700">Pendientes</span>
+                   <span className="text-sm font-semibold text-gray-900">
+                     0
+                   </span>
+                 </div>
+                 <div className="w-full bg-gray-200 rounded-full h-2">
+                   <div
+                     className="bg-yellow-600 h-2 rounded-full"
+                     style={{
+                       width: '0%',
+                     }}
+                   ></div>
+                 </div>
+               </div>
+             </div>
+           </div>
         </div>
       </main>
     </div>
