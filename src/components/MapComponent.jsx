@@ -93,14 +93,14 @@ export default function MapComponent({ registros, loading }) {
              key={registro.id}
              position={[registro.latitud, registro.longitud]}
              icon={createCustomIcon(
-               categoryColorMap[registro.observacion]?.replace('bg-', '').replace('-500', '')
+               categoryColorMap[registro.categoria] || 'bg-gray-500'
              )}
            >
              <Popup>
                <div className="w-64 space-y-2">
                  <div>
                    <h3 className="font-semibold text-gray-900">
-                     {categoryLabelMap[registro.observacion]}
+                     {categoryLabelMap[registro.categoria] || 'Otro'}
                    </h3>
                  </div>
                 <p className="text-sm text-gray-700">{registro.observacion}</p>

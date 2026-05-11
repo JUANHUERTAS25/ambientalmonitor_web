@@ -44,7 +44,7 @@ export default function Statistics({ registros, loading }) {
   // Prepare data for category pie chart
   const categoryData = Object.entries(
     registros.reduce((acc, reg) => {
-      acc[reg.observacion] = (acc[reg.observacion] || 0) + 1
+      acc[reg.categoria] = (acc[reg.categoria] || 0) + 1
       return acc
     }, {})
   ).map(([tipo, count]) => ({
