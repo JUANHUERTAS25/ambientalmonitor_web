@@ -13,7 +13,6 @@ export const useUsers = () => {
       const { data, error: fetchError } = await supabase
         .from('perfiles')
         .select('*')
-        .neq('rol', 'admin')
         .order('created_at', { ascending: false })
 
       if (fetchError) throw fetchError
